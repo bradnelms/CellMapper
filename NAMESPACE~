@@ -1,0 +1,11 @@
+importFrom("utils", "data", "methods")
+importFrom("stats", "mad", "median", "na.omit", "pnorm", "qnorm", "var", "p.adjust", "sd")
+exportClasses(CellMapperInputData)
+exportMethods(dim, ncol, nrow, DataSource, GeneIDType, dataset, show)
+export(CM.prep)
+export(CM.search)
+export(ReplicateManuscript)
+exportPattern(ExampleQueryGenes)
+exportPattern(PositiveControlGenes)
+exportPattern(NegativeControlGenes)
+

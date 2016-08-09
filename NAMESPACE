@@ -1,0 +1,13 @@
+importFrom("utils", "data", "methods")
+importFrom("stats", "mad", "median", "na.omit", "pnorm", "qnorm", "var", "p.adjust", "sd")
+importFrom("methods", "new")
+import("S4Vectors")
+exportClasses(CellMapperList)
+exportMethods(show)
+export(CM.prep)
+export(CM.search)
+export(ReplicateManuscript)
+exportPattern(ExampleQueryGenes)
+exportPattern(PositiveControlGenes)
+exportPattern(NegativeControlGenes)
+

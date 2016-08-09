@@ -1,0 +1,53 @@
+\name{CM.poolResults}
+\alias{CM.poolResults}
+\title{
+	Pool p-values from independent CellMapper searches.
+}
+\description{
+	After applying the 'CM.search' function separately to independent datasets, 'CM.poolResults' will take the resulting p-values and pool them together using Stouffer's method.
+}
+\usage{
+	CM.poolResults(CM.output)
+}
+\arguments{
+  \item{CM.output}{
+	a list object containing multiple independent results from the 'CM.search' function.
+}
+}
+\details{
+
+
+	See the CellMapper vignette for examples about how to use 'CM.poolResults' and associated functions to infer genes selectively expressed in specific cell types.
+}
+\value{
+	a matrix containing the pooled p-value in the first column, the p-values in the individual 'CM.search' results in the subsequent columns, and gene names or identifiers in the first column.
+}
+\references{
+	B.D. Nelms, L. Waldron, L.A. Barrera, A.W. Weflen, J.A. Goettel, G. Guo, R.K. Montgomery, M.R. Neutra, D.T. Breault, S.B. Snapper, S.H. Orkin, M.L. Bulyk, C. Huttenhower and W.I. Lencer. Rapid and accurate inference of gene expression in difficult-to-isolate cell types. In review.
+}
+\author{
+	Brad Nelms
+}
+\seealso{
+	'CM.prep', 'CM.search', the 'CellMapperData' package
+}
+\examples{
+	ngenes <- 1000
+	narrays <- 100
+	x1 <- matrix(rnorm(ngenes*narrays), ngenes, narrays)
+	rownames(x1) = 1:ngenes
+	x2 <- matrix(rnorm(ngenes*narrays), ngenes, narrays)
+	rownames(x2) = 1:ngenes
+
+	data1 <- CM.prep(x1)
+	data2 <- CM.prep(x2)
+
+	results1 <- CM.search(data1, query.genes = '59')
+	results2 <- CM.search(data2, query.genes = '59')
+
+	pooled.results <- CM.poolResults(list(r1 = results1, r2 = results2))
+
+	p.adj <- p.adjust(exp(pooled.results[,1]), method = 'holm')
+	FDR <- p.adjust(exp(pooled.results[,1]), method = 'BH')
+}
+
