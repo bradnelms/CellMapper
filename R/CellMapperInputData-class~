@@ -1,9 +1,0 @@
-setClass("CellMapperInputData",
-	representation(
-		ncol="character",
-		nrow="character",
-		source="character",
-		IDtype="character",
-		dataset="list"
-	)
-)
